@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bet World - Slot Oyunu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-bottom: 2px solid #ffcc00;
+    }
+    header h1 {
+      margin: 0;
+      color: #ffcc00;
+    }
+    .slot-box {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 50px;
+      margin-top: 30px;
+    }
+    input {
+      padding: 8px;
+      width: 80px;
+      text-align: center;
+      margin-top: 20px;
+      border-radius: 4px;
+      border: none;
+    }
+    button {
+      background: #ffcc00;
+      color: black;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e6b800;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Slot Oyunu</h1>
+</header>
+
+<div class="slot-box" id="slotResult">❓ ❓ ❓</div>
+<br>
+<input type="number" id="betAmount" value="100" min="10" step="10"> ₺
+<br>
+<button onclick="playSlot()">Oyna</button>
+
+<br><br>
+<a class="back" href="index.html">← Ana Sayfaya Dön</a>
+
+<script>
+function playSlot() {
+  let bet = parseInt(document.getElementById("betAmount").value);
+  if (bet <= 0) { alert("Geçerli bir miktar giriniz!"); return; }
+  
+  let symbols = ["🍒", "🍋", "🍇", "⭐", "🔔"];
+  let r1 = symbols[Math.floor(Math.random() * symbols.length)];
+  let r2 = symbols[Math.floor(Math.random() * symbols.length)];
+  let r3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+  document.getElementById("slotResult").innerText = `${r1} ${r2} ${r3}`;
+
+  if (r1 === r2 && r2 === r3) {
+    alert("Tebrikler! 5x kazandınız!");
+  } else {
+    alert("Kaybettiniz!");
+  }
+}
+</script>
+
+</body>
+</html>
