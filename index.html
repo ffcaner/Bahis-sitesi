@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bet World - Demo Bahis Sitesi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1f1f1f;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ffcc00;
+    }
+    header h1 {
+      margin: 0;
+      color: #ffcc00;
+      font-size: 1.5em;
+    }
+    header .buttons button {
+      background-color: #ffcc00;
+      color: black;
+      border: none;
+      padding: 8px 14px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .section {
+      padding: 20px;
+    }
+    h2 {
+      border-left: 4px solid #ffcc00;
+      padding-left: 10px;
+      color: #ffcc00;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #1e1e1e;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    table th, table td {
+      padding: 10px;
+      text-align: center;
+    }
+    table th {
+      background-color: #2c2c2c;
+    }
+    table td {
+      border-top: 1px solid #333;
+    }
+    .games {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .game-card {
+      background: #1e1e1e;
+      flex: 1 1 calc(50% - 15px);
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .game-card img {
+      width: 100%;
+      display: block;
+    }
+    .game-card:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 600px) {
+      .game-card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BET WORLD</h1>
+    <div class="buttons">
+      <button onclick="alert('Giriş sistemi demo!')">Giriş</button>
+      <button onclick="alert('Kayıt sistemi demo!')">Kayıt Ol</button>
+    </div>
+  </header>
+
+  <div class="section">
+    <h2>Canlı Bahis Oranları</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Maç</th>
+          <th>1</th>
+          <th>X</th>
+          <th>2</th>
+        </tr>
+      </thead>
+      <tbody id="oddsTable">
+        <tr>
+          <td>Takım A vs Takım B</td>
+          <td>1.85</td>
+          <td>3.20</td>
+          <td>2.10</td>
+        </tr>
+        <tr>
+          <td>Takım C vs Takım D</td>
+          <td>2.05</td>
+          <td>3.10</td>
+          <td>1.90</td>
+        </tr>
+        <tr>
+          <td>Takım E vs Takım F</td>
+          <td>1.75</td>
+          <td>3.50</td>
+          <td>2.25</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Popüler Oyunlar</h2>
+    <div class="games">
+      <div class="game-card" onclick="alert('Sweet Bonanza demo açılıyor...')">
+        <img src="https://i.ibb.co/2n3xQss/sweet-bonanza.jpg" alt="Sweet Bonanza">
+        <p>Sweet Bonanza</p>
+      </div>
+      <div class="game-card" onclick="alert('Rulet demo açılıyor...')">
+        <img src="https://i.ibb.co/tZW9KKd/roulette.jpg" alt="Rulet">
+        <p>Rulet</p>
+      </div>
+      <div class="game-card" onclick="alert('Blackjack demo açılıyor...')">
+        <img src="https://i.ibb.co/N9sN69X/blackjack.jpg" alt="Blackjack">
+        <p>Blackjack</p>
+      </div>
+      <div class="game-card" onclick="alert('Slot oyun demo açılıyor...')">
+        <img src="https://i.ibb.co/SQNf8tk/slots.jpg" alt="Slot">
+        <p>Slot</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Oranların sahte olarak değişmesi
+    function updateOdds() {
+      document.querySelectorAll("#oddsTable tr").forEach(row => {
+        let cells = row.querySelectorAll("td");
+        for (let i = 1; i < cells.length; i++) {
+          let random = (Math.random() * (3.50 - 1.50) + 1.50).toFixed(2);
+          cells[i].textContent = random;
+        }
+      });
+    }
+    setInterval(updateOdds, 5000);
+  </script>
+
+</body>
+</html>
