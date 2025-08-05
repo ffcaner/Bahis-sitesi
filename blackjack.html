@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bet World - Blackjack Oyunu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-bottom: 2px solid #ffcc00;
+    }
+    header h1 {
+      margin: 0;
+      color: #ffcc00;
+    }
+    .cards {
+      font-size: 40px;
+      margin-top: 20px;
+    }
+    button {
+      background: #ffcc00;
+      color: black;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e6b800;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Blackjack Oyunu</h1>
+</header>
+
+<div class="cards" id="playerCards">Oyuncu: </div>
+<div class="cards" id="dealerCards">Krupiye: </div>
+
+<button onclick="startGame()">Başla</button>
+<button onclick="hit()">Kart Çek</button>
+<button onclick="stand()">Dur</button>
+
+<br><br>
+<a class="back" href="index.html">← Ana Sayfaya Dön</a>
+
+<script>
+let player = [];
+let dealer = [];
+
+function getCard() {
+  let cards = [2,3,4,5,6,7,8,9,10,11]; // 11 = As
+  return cards[Math.floor(Math.random() * cards.length)];
+}
+
+function startGame() {
+  player = [getCard(), getCard()];
+  dealer = [getCard()];
+  updateDisplay();
+}
+
+function hit() {
+  player.push(getCard());
+  updateDisplay();
+  if (calculateTotal(player) > 21) {
+    alert("Patladınız! Kaybettiniz!");
+  }
+}
+
+function stand() {
+  while (calculateTotal(dealer) < 17) {
+    dealer.push(getCard());
+  }
+  updateDisplay();
+  let playerTotal = calculateTotal(player);
+  let dealerTotal = calculateTotal(dealer);
+
+  if (dealerTotal > 21 || playerTotal > dealerTotal) {
+    alert("Kazandınız!");
+  } else if (playerTotal < dealerTotal) {
+    alert("Kaybettiniz!");
+  } else {
+    alert("Berabere!");
+  }
+}
+
+function calculateTotal(hand) {
+  return hand.reduce((a, b) => a + b, 0);
+}
+
+function updateDisplay() {
+  document.getElementById("playerCards").innerText = "Oyuncu: " + player.join(", ");
+  document.getElementById("dealerCards").innerText = "Krupiye: " + dealer.join(", ");
+}
+</script>
+
+</body>
+</html>
